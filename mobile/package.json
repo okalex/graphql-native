@@ -6,9 +6,12 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "lokka": "^1.7.0",
+    "apollo-client": "^0.4.15",
+    "graphql-tag": "^0.1.13",
     "native-base": "^0.5.8",
     "react": "15.3.1",
-    "react-native": "0.33.0"
+    "react-apollo": "^0.5.5",
+    "react-native": "0.33.0",
+    "redux": "^3.6.0"
   }
 }

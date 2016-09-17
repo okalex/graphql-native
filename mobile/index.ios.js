@@ -7,21 +7,25 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet } from 'react-native';
 import { Container, Header, Title, Content } from 'native-base';
+import { ApolloProvider } from 'react-apollo';
 
+import api from './api/client'
 import Intro from './screens/Intro'
 
 class App extends Component {
   render() {
     return (
-      <Container>
-        <Header>
-          <Title>MyApp</Title>
-        </Header>
+      <ApolloProvider client={ api.client }>
+        <Container>
+          <Header>
+            <Title>MyApp</Title>
+          </Header>
 
-        <Content>
-          <Intro />
-        </Content>
-      </Container>
+          <Content>
+            <Intro />
+          </Content>
+        </Container>
+      </ApolloProvider>
     );
   }
 }
