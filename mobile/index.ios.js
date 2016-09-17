@@ -5,26 +5,23 @@
  */
 
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { AppRegistry, StyleSheet } from 'react-native';
+import { Container, Header, Title, Content } from 'native-base';
 
-class mobile extends Component {
+import Intro from './screens/Intro'
+
+class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Van Living
-        </Text>
+      <Container>
+        <Header>
+          <Title>MyApp</Title>
+        </Header>
 
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+        <Content>
+          <Intro />
+        </Content>
+      </Container>
     );
   }
 }
@@ -48,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('mobile', () => mobile);
+AppRegistry.registerComponent('mobile', () => App);
