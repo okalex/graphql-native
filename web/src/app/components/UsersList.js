@@ -6,10 +6,22 @@ const { runQuery } = require('../actions/actions');
 const api = require('../api/client');
 const User = require('./User');
 
+const getUsers = () => {
+  return api.client.query(`
+    {
+      users {
+        id
+        name
+        createdAt
+      }
+    }
+  `);
+};
+
 class UsersList extends React.Component {
   componentDidMount() {
     this.props.dispatch(
-      runQuery(api.getUsers)
+      runQuery(getUsers)
     );
   }
 

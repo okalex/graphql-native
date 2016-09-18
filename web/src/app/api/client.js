@@ -18,19 +18,9 @@ const getUser = (id) => {
   `);
 };
 
-const getUsers = () => {
-  return client.query(`
-    {
-      users {
-        id
-        name
-      }
-    }
-  `);
-};
+
 
 module.exports = {
   client,
-  getUser,
-  getUsers
+  getUser
 };

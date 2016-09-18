@@ -8,8 +8,7 @@ class User extends React.Component {
 
     return (
       <div>
-        <span>{user.id}: { user.name }</span>
-        <a href="#" onClick={ this.props.onDelete }>Delete</a>
+        <span>{user.id}: { user.name }, registered at { user.createdAt }</span>
       </div>
     );
   }
