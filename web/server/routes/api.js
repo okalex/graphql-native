@@ -3,7 +3,7 @@
 const graphQlHttp = require('express-graphql');
 const graphQlSchema = require('../graphql');
 
-module.exports = (app) => {
+module.exports = app => {
   app.use(
     '/api',
     graphQlHttp({

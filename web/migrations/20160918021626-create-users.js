@@ -1,6 +1,6 @@
 'use strict';
 
-const { hashSync } = require('../server/util/password')
+const { hashSync } = require('../server/util/password-utils')
 
 const genUser = (name) => return {
   name: name,
