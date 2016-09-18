@@ -1,0 +1,2 @@
+# Run this from the server directory
+sequelize-auto -h localhost -d graphql-native -p 5432 -c ../config/config.json -o models -e postgresql

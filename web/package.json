@@ -13,16 +13,21 @@
     "express": "^4.14.0",
     "express-graphql": "^0.5.4",
     "graphql": "^0.7.0",
+    "graphql-date": "^1.0.2",
     "immutable": "^3.8.1",
     "lokka": "^1.7.0",
     "lokka-transport-http": "^1.4.0",
     "node-fetch": "^1.6.1",
+    "pg": "^6.1.0",
+    "pg-hstore": "^2.3.2",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "sequelize": "^3.24.3",
+    "sequelize-cli": "^2.4.0"
   },
   "devDependencies": {
     "babel-core": "^6.14.0",

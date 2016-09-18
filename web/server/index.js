@@ -1,16 +1,16 @@
 'use strict'
 
 const express = require('express');
-const graphQLHTTP = require('express-graphql');
+const graphQlHttp = require('express-graphql');
 
-const schema = require('./schema');
+const graphQlSchema = require('./graphql');
 
-const app = express()
+const app = express();
 
 app.use(
   '/api',
-  graphQLHTTP({
-    schema: schema,
+  graphQlHttp({
+    schema: graphQlSchema,
     pretty: true,
     graphiql: true
   })
@@ -19,4 +19,4 @@ app.use(
 app.use(express.static('dist'))
 
 app.listen(3000);
-console.log('GraphQL server running on http://localhost:3000/graphql');
+console.log('GraphQL server running on http://localhost:3000/api');

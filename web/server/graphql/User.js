@@ -1,15 +1,17 @@
 'use strict'
 
-const graphql = require('graphql');
+const graphql = require('graphql')
+const GraphQLDate = require('graphql-date')
 
-const ObjectHelper = require('../../util/ObjectHelper');
-const data = require('../dev/data.json')
+const { users } = require('../models')
 
 const UserType = new graphql.GraphQLObjectType({
   name: 'User',
   fields: {
-    id: { type: graphql.GraphQLString },
-    name: { type: graphql.GraphQLString }
+    id: { type: graphql.GraphQLInt },
+    name: { type: graphql.GraphQLString },
+    createdAt: { type: GraphQLDate },
+    updatedAt: { type: GraphQLDate }
   }
 });
 
@@ -27,7 +29,7 @@ const all = {
   type: new graphql.GraphQLList(UserType),
   args: {},
   resolve: function(_) {
-    return ObjectHelper.values(data);
+    return users.findAll()
   }
 }
 

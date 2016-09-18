@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "graphql-native",
+    "password": null,
+    "database": "graphql-native",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
