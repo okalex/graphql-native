@@ -21,6 +21,14 @@ module.exports = function(sequelize, DataTypes) {
 		name: {
 			type: DataTypes.STRING,
 			allowNull: false
+		},
+		email: {
+			type: DataTypes.STRING,
+			allowNull: false
+		},
+		password_hash: {
+			type: DataTypes.STRING,
+			allowNull: false
 		}
 	}, {
 		tableName: 'users'

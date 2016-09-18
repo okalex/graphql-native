@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
 import { ListView, Text, View } from 'react-native';
 import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 import SceneLayout from './SceneLayout'
-import api from '../api/client'
+
+const allUsers = gql`query allUsers {
+  users {
+    id
+    name
+    email
+  }
+}`
 
 class UsersList extends Component {
   constructor(props) {
@@ -15,7 +23,6 @@ class UsersList extends Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log(props)
     const users = props.data.users || []
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(users)
@@ -23,7 +30,7 @@ class UsersList extends Component {
   }
 
   renderUser(user) {
-    return <Text>{ user.id }: { user.name }</Text>
+    return <Text>{ user.id }: { user.name } ({ user.email })</Text>
   }
 
   render() {
@@ -35,6 +42,6 @@ class UsersList extends Component {
   }
 }
 
-const UsersListWithData = graphql(api.allUsers)(UsersList)
+const UsersListWithData = graphql(allUsers)(UsersList)
 
 module.exports = UsersListWithData
