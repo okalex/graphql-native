@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { ListView, Text, View } from 'react-native';
 import { graphql } from 'react-apollo'
 
+import SceneLayout from './SceneLayout'
 import api from '../api/client'
 
 class UsersList extends Component {
@@ -27,11 +28,9 @@ class UsersList extends Component {
 
   render() {
     return (
-      <View>
-        <ListView
-          dataSource={ this.state.dataSource }
-          renderRow={ this.renderUser } />
-      </View>
+      <ListView
+        dataSource={ this.state.dataSource }
+        renderRow={ this.renderUser } />
     )
   }
 }
