@@ -1,10 +1,14 @@
-const express = require('express');
-const bodyParser = require('body-parser')
+const express = require('express')
+const passport = require('passport')
 const FileUtils = require('../util/file-utils')
+const expressLogging = require('express-logging')
+const logger = require('logops')
 
 module.exports = app => {
-  // Parse body
-  app.use(bodyParser.urlencoded({ extended: true }))
+  app.use(expressLogging(logger))
+
+  app.use(passport.initialize())
+  app.use(passport.session())
 
   // Custom routes
   const importRoute = file => require('./' + file)(app)

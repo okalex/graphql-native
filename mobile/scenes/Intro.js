@@ -7,7 +7,6 @@ import SceneLayout from '../components/SceneLayout'
 
 class Intro extends Component {
   render() {
-    console.log("Rendering Intro")
     return (
       <SceneLayout>
         <Text>MyApp</Text>

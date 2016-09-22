@@ -6,7 +6,6 @@ class SceneLayout extends Component {
   render() {
     return (
       <Container>
-        <Header></Header>
         <Content>
           { this.props.children }
         </Content>

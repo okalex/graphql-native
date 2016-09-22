@@ -13,6 +13,7 @@
     "react-apollo": "^0.5.5",
     "react-native": "0.33.0",
     "react-native-router-flux": "^3.35.0",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "tcomb-form-native": "^0.6.1"
   }
 }

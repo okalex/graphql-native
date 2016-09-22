@@ -17,11 +17,12 @@ class App extends Component {
     return (
       <ApolloProvider client={ api.client }>
         <Router>
-          <Scene key="root">
-            <Scene key="intro" component={ Scenes.Intro } title="My App Intro" initial={ true } />
+          <Scene key="root" hideNavBar={ true }>
+            <Scene key="launch" component={ Scenes.Launch } title="Launch" initial={ true } />
+            <Scene key="intro" component={ Scenes.Intro } title="Intro" />
             <Scene key="login" component={ Scenes.Login } title="Log In" />
             <Scene key="signup" component={ Scenes.Signup } title="Sign Up" />
-            <Scene key="users" component={ Scenes.Users } title="All Users" />
+            <Scene key="home" component={ Scenes.Home } title="Home" />
           </Scene>
         </Router>
       </ApolloProvider>

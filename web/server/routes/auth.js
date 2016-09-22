@@ -6,6 +6,8 @@ const LocalStrategy = require('passport-local').Strategy
 
 const { users } = require('../models')
 const passwordUtils = require('../util/password-utils')
+const { loginHandler, sendAuthToken } = require('./middlewares/auth')
+const parseBody = require('./middlewares/body-parser')
 
 const checkPassword = (email, password) => {
   return users.findByEmail(email, ['password_hash'])
@@ -26,26 +28,20 @@ passport.use('local', strategy)
 
 passport.serializeUser( (user, done) => done(null, user.id) )
 passport.deserializeUser( (id, done) => {
-  return users.findById(id)
-    .then( (user, err) => done(err, user) )
+  return users.findById(id).then( (user, err) => done(err, user) )
 })
 
 module.exports = app => {
   app.use(
     session({
       genid: req => uuid.v4(),
-      secret: 'Mcrdnn2yFcT9ez'
+      secret: 'Mcrdnn2yFcT9ez' // TODO: Replace this with an ENV var
     })
   )
 
-  app.use(passport.initialize())
-  app.use(passport.session())
-
   app.post('/login',
-    passport.authenticate('local', {
-      successRedirect: '/',
-      failureRedirect: '/login',
-      failureFlash: true
-    })
+    parseBody,
+    loginHandler,
+    sendAuthToken
   )
 }
