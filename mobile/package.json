@@ -1,19 +1,24 @@
 {
-  "name": "mobile",
+  "name": "main",
   "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
-  },
+  "main": "index.ios.js",
   "dependencies": {
     "apollo-client": "^0.4.15",
+    "exponent": "~10.0.0",
     "graphql-tag": "^0.1.13",
-    "native-base": "^0.5.8",
-    "react": "15.3.1",
+    "react": "~15.3.1",
     "react-apollo": "^0.5.5",
-    "react-native": "0.33.0",
+    "react-native": "github:exponentjs/react-native#sdk-10.1.0",
     "react-native-router-flux": "^3.35.0",
     "redux": "^3.6.0",
     "tcomb-form-native": "^0.6.1"
+  },
+  "devDependencies": {
+    "babel-plugin-syntax-flow": "^6.13.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-react-native-stage-0": "^1.0.1"
   }
 }

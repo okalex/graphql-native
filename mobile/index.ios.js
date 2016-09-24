@@ -5,6 +5,7 @@
  */
 
 import React, { Component } from 'react';
+import 'exponent';
 import { AppRegistry } from 'react-native';
 import { Scene, Router } from 'react-native-router-flux'
 import { ApolloProvider } from 'react-apollo';
@@ -30,4 +31,4 @@ class App extends Component {
   }
 }
 
-AppRegistry.registerComponent('mobile', () => App);
+AppRegistry.registerComponent('main', () => App);

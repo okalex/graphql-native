@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    "syntax-flow",
+    "transform-decorators-legacy"
+  ],
+  "presets": [
+    "react-native",
+    "react-native-stage-0/decorator-support"
+  ]
+}

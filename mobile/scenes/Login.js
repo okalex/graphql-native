@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Text, TouchableHighlight } from 'react-native'
-import { Container, Content } from 'native-base'
 import { Actions } from 'react-native-router-flux';
 import tcomb from 'tcomb-form-native'
 

@@ -7,7 +7,7 @@ class Signup extends Component {
   render() {
     return (
       <SceneLayout>
-        <Text>Sign Up</Text>
+        <Text>Logging out…</Text>
       </SceneLayout>
     )
   }

@@ -1,17 +1,23 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
-import { Container, Content, Header } from  'native-base'
+import { StyleSheet, View } from 'react-native'
 
 class SceneLayout extends Component {
   render() {
     return (
-      <Container>
-        <Content>
-          { this.props.children }
-        </Content>
-      </Container>
+      <View style={ styles.container }>
+        { this.props.children }
+      </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 module.exports = SceneLayout
