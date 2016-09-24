@@ -19,21 +19,30 @@ class Login extends Component {
     this.store = new FormStore()
   }
 
+  handleLoginResponse(response) {
+    if (response.status != 200) {
+      throw new Error("Login failed due to error " + response.status)
+    } else {
+      return response.json()
+    }
+  }
+
+  loginFailed(err) {
+    this.setState({
+      loginFailed: true
+    })
+  }
+
   submit() {
     const formValues = this.store.getAll()
     const username = formValues.username
     const password = formValues.password
     if (username && password) {
-      api.submitLogin(username.toLowerCase(), password.toLowerCase())
-        .then( response => response.json() )
-        .then( data => saveSessionToken(data.authToken) )
-        .then( _ => Actions.home() )
-        .catch( err => {
-          console.error(err)
-          this.setState({
-            loginFailed: true
-          })
-        })
+      api.submitLogin(username, password)
+        .then( response => this.handleLoginResponse(response) )
+        .then( data     => saveSessionToken(data.authToken) )
+        .then( _        => Actions.home() )
+        .catch( err     => this.loginFailed(err) )
     }
   }
 

@@ -26,10 +26,11 @@ class TextField extends React.Component {
       <View>
         { label }
         <TextInput
-          ref={ this.props.fieldName }
           style={ style }
+          autoCapitalize="none"
           onChangeText={ this.onChange.bind(this) }
-          value={ this.state.value } />
+          value={ this.state.value }
+          { ...this.props } />
       </View>
     )
   }
