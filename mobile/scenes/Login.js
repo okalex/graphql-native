@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, TouchableHighlight } from 'react-native'
+import { Text } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import tcomb from 'tcomb-form-native'
 
@@ -7,15 +7,8 @@ import SceneLayout from '../components/SceneLayout'
 import api from '../api/client'
 import { saveSessionToken } from '../api/session'
 import { styles } from '../Styles'
-
-const Form = tcomb.form.Form
-
-const LoginFields = tcomb.struct({
-  username: tcomb.String,
-  password: tcomb.String
-})
-
-const options = {}
+import { FormStore } from '../components/Form'
+import { LoginForm } from '../components/Forms'
 
 class Login extends Component {
   constructor(props) {
@@ -23,12 +16,13 @@ class Login extends Component {
     this.state = {
       loginFailed: false
     }
+    this.store = new FormStore()
   }
 
   submit() {
-    const formValue = this.refs.form.getValue()
-    const username = formValue.username
-    const password = formValue.password
+    const formValues = this.store.getAll()
+    const username = formValues.username
+    const password = formValues.password
     if (username && password) {
       api.submitLogin(username.toLowerCase(), password.toLowerCase())
         .then( response => response.json() )
@@ -48,16 +42,7 @@ class Login extends Component {
     return (
       <SceneLayout>
         <Text>{ loginFailedMessage }</Text>
-        <Form
-          ref="form"
-          type={ LoginFields }
-          options={ options }
-          autoCapitalize={ false }
-        />
-        <TouchableHighlight onPress={ this.submit.bind(this) }>
-          <Text style={ styles.actionButton }>Log In</Text>
-        </TouchableHighlight>
-
+        <LoginForm store={ this.store } onSubmit={ this.submit.bind(this) } />
         <Text style={ styles.p }>Forgot your password?</Text>
       </SceneLayout>
     )
