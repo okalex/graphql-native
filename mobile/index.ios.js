@@ -6,14 +6,20 @@
 
 import React, { Component } from 'react';
 import 'exponent';
+import { Font } from 'exponent';
 import { AppRegistry } from 'react-native';
 import { Scene, Router } from 'react-native-router-flux'
 import { ApolloProvider } from 'react-apollo';
 
 import api from './api/client'
 import Scenes from './scenes'
+import { loadFonts } from './Styles'
 
 class App extends Component {
+  componentDidMount() {
+    loadFonts()
+  }
+
   render() {
     return (
       <ApolloProvider client={ api.client }>

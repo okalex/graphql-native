@@ -6,6 +6,7 @@ import tcomb from 'tcomb-form-native'
 import SceneLayout from '../components/SceneLayout'
 import api from '../api/client'
 import { saveSessionToken } from '../api/session'
+import { styles } from '../Styles'
 
 const Form = tcomb.form.Form
 
@@ -46,7 +47,6 @@ class Login extends Component {
     let loginFailedMessage = this.state.loginFailed ? "Username or password were not valid." : ""
     return (
       <SceneLayout>
-        <Text>Log in</Text>
         <Text>{ loginFailedMessage }</Text>
         <Form
           ref="form"
@@ -55,8 +55,10 @@ class Login extends Component {
           autoCapitalize={ false }
         />
         <TouchableHighlight onPress={ this.submit.bind(this) }>
-          <Text>Log In</Text>
+          <Text style={ styles.actionButton }>Log In</Text>
         </TouchableHighlight>
+
+        <Text style={ styles.p }>Forgot your password?</Text>
       </SceneLayout>
     )
   }
