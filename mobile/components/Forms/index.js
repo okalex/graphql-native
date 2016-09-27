@@ -1,3 +1,4 @@
 module.exports = {
-  LoginForm: require('./LoginForm')
+  LoginForm:  require('./LoginForm'),
+  SignupForm: require('./SignupForm')
 }

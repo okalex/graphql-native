@@ -3,6 +3,7 @@
 const gql = require('./types')
 const { users } = require('../models')
 const passwordUtils = require('../util/password-utils')
+const session = require('../util/session')
 
 const UserType = new gql.Object({
   name: 'User',
@@ -13,6 +14,13 @@ const UserType = new gql.Object({
     email:     { type: gql.String },
     createdAt: { type: gql.Date },
     updatedAt: { type: gql.Date }
+  }
+});
+
+const AuthToken = new gql.Object({
+  name: 'AuthToken',
+  fields: {
+    authToken: { type: gql.String }
   }
 });
 
@@ -32,23 +40,30 @@ const all = {
 };
 
 const add = {
-  type: UserType,
+  type: AuthToken,
   args: {
     name:     { type: new gql.NonNull(gql.String) },
     email:    { type: new gql.NonNull(gql.String) },
     password: { type: new gql.NonNull(gql.String) }
   },
   resolve: (root, args) => {
+    const createUser = (pwHash) => users.create({
+      name:         args.name,
+      email:        args.email.toLowerCase(),
+      passwordHash: pwHash
+    })
+
+    const generateSession = (user) => ({
+      authToken: session.generateToken(user)
+    })
+
     return users.findByEmail(args.email)
       .then( existing => {
         if (existing) throw new Error(`Email ${args.email} already exists`)
       })
       .then( _ => passwordUtils.hash(args.password) )
-      .then( pwHash => users.create({
-        name:         args.name,
-        email:        args.email.toLowerCase(),
-        passwordHash: pwHash
-      }))
+      .then( createUser )
+      .then( generateSession )
       .catch( err => {
         console.error(err)
         return null
