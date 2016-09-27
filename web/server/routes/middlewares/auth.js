@@ -25,10 +25,9 @@ const requireAuth = (req, res, next) => {
   const token = match[1]
   if (!token) return forbidden(res)
 
-  jwt.verify(token, jwtSecret, (err, decoded) => {
-    if (err) return forbidden(res)
-    else next()
-  })
+  decodeToken(token)
+    .catch( forbidden(res) )
+    .then( next() )
 }
 
 module.exports = {
