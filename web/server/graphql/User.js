@@ -1,43 +1,68 @@
 'use strict'
 
-const graphql = require('graphql')
-const GraphQLDate = require('graphql-date')
-
+const gql = require('./types')
 const { users } = require('../models')
+const passwordUtils = require('../util/password-utils')
 
-const UserType = new graphql.GraphQLObjectType({
+const UserType = new gql.Object({
   name: 'User',
+  description: 'A user',
   fields: {
-    id: { type: graphql.GraphQLInt },
-    name: { type: graphql.GraphQLString },
-    email: { type: graphql.GraphQLString },
-    createdAt: { type: GraphQLDate },
-    updatedAt: { type: GraphQLDate }
+    id:        { type: gql.Int },
+    name:      { type: gql.String },
+    email:     { type: gql.String },
+    createdAt: { type: gql.Date },
+    updatedAt: { type: gql.Date }
   }
 });
 
-const byId = {
+const one = {
   type: UserType,
   args: {
-    id: { type: graphql.GraphQLString }
+    id:    { type: gql.String },
+    email: { type: gql.String }
   },
-  resolve: function (_, args) {
-    return data[args.id];
-  }
+  resolve: (root, args) => users.findOne({ where: args })
 };
 
 const all = {
-  type: new graphql.GraphQLList(UserType),
+  type: new gql.List(UserType),
   args: {},
-  resolve: function(_) {
-    return users.findAll()
+  resolve: (root) => users.findAll()
+};
+
+const add = {
+  type: UserType,
+  args: {
+    name:     { type: new gql.NonNull(gql.String) },
+    email:    { type: new gql.NonNull(gql.String) },
+    password: { type: new gql.NonNull(gql.String) }
+  },
+  resolve: (root, args) => {
+    return users.findByEmail(args.email)
+      .then( existing => {
+        if (existing) throw new Error(`Email ${args.email} already exists`)
+      })
+      .then( _ => passwordUtils.hash(args.password) )
+      .then( pwHash => users.create({
+        name:         args.name,
+        email:        args.email.toLowerCase(),
+        passwordHash: pwHash
+      }))
+      .catch( err => {
+        console.error(err)
+        return null
+      })
   }
-}
+};
 
 module.exports = {
   type: UserType,
   queries: {
-    all: all,
-    byId: byId
+    all,
+    one
+  },
+  mutations: {
+    add
   }
 };

@@ -1,9 +1,9 @@
 'use strict'
 
-const graphql = require('graphql');
+const gql = require('./types')
+const Root = require('./Root')
 
-const Query = require('./Query')
-
-module.exports = new graphql.GraphQLSchema({
-  query: Query
+module.exports = new gql.Schema({
+  query: Root.Query,
+  mutation: Root.Mutation
 });

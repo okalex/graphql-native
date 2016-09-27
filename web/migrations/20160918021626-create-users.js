@@ -2,14 +2,8 @@
 
 const { hashSync } = require('../server/util/password-utils')
 
-const genUser = (name) => return {
-  name: name,
-  email: name.toLowerCase() + '@email.com',
-  password_hash: hashSync(name.toLowerCase())
-}
-
 module.exports = {
-  up: function (queryInterface, Sequelize) {
+  up: (queryInterface, Sequelize) => {
     queryInterface.createTable('users',
       {
         id: {
@@ -33,19 +27,27 @@ module.exports = {
           type: Sequelize.STRING,
           allowNull: false
         },
-        password_hash: {
+        passwordHash: {
           type: Sequelize.STRING,
           allowNull: false
         }
       }
     ).then(_ => {
+      const genUser = (name) => {
+        return {
+          name: name,
+          email: name.toLowerCase() + '@email.com',
+          passwordHash: hashSync(name.toLowerCase())
+        }
+      }
+
       const names = ['Alex', 'Mara', 'Levi', 'Allison', 'Hermione', 'Harry', 'Weston', 'Becca', 'Valerie', 'Timothy']
       let users = names.map(genUser)
       queryInterface.bulkInsert('users', users)
     })
   },
 
-  down: function (queryInterface, Sequelize) {
+  down: (queryInterface, Sequelize) => {
     queryInterface.dropTable('users')
   }
 };

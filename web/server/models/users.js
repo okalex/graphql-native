@@ -2,22 +2,6 @@
 
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('users', {
-		id: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			primaryKey: true,
-			autoIncrement: true
-		},
-		createdAt: {
-			type: DataTypes.DATE,
-			allowNull: true,
-			defaultValue: 'now()'
-		},
-		updatedAt: {
-			type: DataTypes.DATE,
-			allowNull: true,
-			defaultValue: 'now()'
-		},
 		name: {
 			type: DataTypes.STRING,
 			allowNull: false
@@ -26,11 +10,12 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING,
 			allowNull: false
 		},
-		password_hash: {
+		passwordHash: {
 			type: DataTypes.STRING,
 			allowNull: false
 		}
 	}, {
-		tableName: 'users'
+		tableName: 'users',
+    timestamps: true
 	});
 };

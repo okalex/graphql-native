@@ -10,8 +10,8 @@ const { loginHandler, sendAuthToken } = require('./middlewares/auth')
 const parseBody = require('./middlewares/body-parser')
 
 const checkPassword = (email, password) => {
-  return users.findByEmail(email, ['password_hash'])
-    .then( user => passwordUtils.compare(password, user.password_hash) )
+  return users.findByEmail(email, ['passwordHash'])
+    .then( user => passwordUtils.compare(password, user.passwordHash) )
     .catch( err => false )
 }
 
