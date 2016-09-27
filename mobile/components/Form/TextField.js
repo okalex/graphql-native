@@ -37,7 +37,7 @@ class TextField extends React.Component {
 }
 
 const style = {
-  ...Font.style('open-sans-bold'),
+  ...Font.style('body-regular'),
   alignSelf: 'center',
   backgroundColor: colors.white,
   paddingBottom: 5,

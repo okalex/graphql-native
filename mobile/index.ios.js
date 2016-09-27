@@ -5,6 +5,7 @@
  */
 
 import React, { Component } from 'react';
+import { Text, View } from 'react-native';
 import 'exponent';
 import { Font } from 'exponent';
 import { AppRegistry } from 'react-native';
@@ -16,11 +17,25 @@ import Scenes from './scenes'
 import { loadFonts } from './Styles'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      assetsLoaded: false
+    }
+  }
+
   componentDidMount() {
     loadFonts()
+      .then(this.setState({
+        assetsLoaded: true
+      }))
   }
 
   render() {
+    if (!this.state.assetsLoaded) {
+      return <View><Text>Loading…</Text></View>
+    }
+
     return (
       <ApolloProvider client={ api.client }>
         <Router>

@@ -8,24 +8,24 @@ class Button extends React.Component {
   render() {
     return (
       <TouchableHighlight onPress={ this.props.onPress }>
-        <Text style={ style(colors.seafoam) }>{ this.props.children }</Text>
+        <Text style={ style(colors.light, this.props.style) }>{ this.props.children }</Text>
       </TouchableHighlight>
     )
   }
 }
 
-const style = (color) => {
+const style = (color, styleOverride = {}) => {
   return {
-    ...Font.style('open-sans-bold'),
+    ...Font.style('body-regular'),
     alignSelf: 'center',
-    borderColor: colors.seafoam,
-    borderWidth: 3,
-    paddingBottom: 5,
-    paddingTop: 7,
+    backgroundColor: colors.seafoam,
+    paddingBottom: 8,
+    paddingTop: 8,
     color: color,
-    fontSize: 24,
+    fontSize: 18,
     textAlign: 'center',
-    width: 354
+    width: 350,
+    ...styleOverride
   }
 }
 

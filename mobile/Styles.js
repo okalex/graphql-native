@@ -3,10 +3,17 @@ import { Font } from 'exponent';
 
 const loadFonts = () => {
   return Font.loadAsync({
-    'open-sans':      require('./assets/fonts/OpenSans-Regular.ttf'),
-    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
-    'patua-one':      require('./assets/fonts/PatuaOne-Regular.ttf')
-  });
+    'body-regular':        require('./assets/fonts/PTSans-Web-Regular.ttf'),
+    'body-bold':           require('./assets/fonts/PTSans-Web-Bold.ttf'),
+    'body-italic':         require('./assets/fonts/PTSans-Web-Italic.ttf'),
+    'body-bolditalic':     require('./assets/fonts/PTSans-Web-BoldItalic.ttf'),
+    'heading-light':       require('./assets/fonts/Ubuntu-Light.ttf'),
+    'heading-lightitalic': require('./assets/fonts/Ubuntu-LightItalic.ttf'),
+    'heading-regular':     require('./assets/fonts/Ubuntu-Regular.ttf'),
+    'heading-italic':      require('./assets/fonts/Ubuntu-Italic.ttf'),
+    'heading-bold':        require('./assets/fonts/Ubuntu-Bold.ttf'),
+    'heading-bolditalic':  require('./assets/fonts/Ubuntu-BoldItalic.ttf')
+  })
 }
 
 // http://www.colourlovers.com/palette/625987/dont_you_go_down
